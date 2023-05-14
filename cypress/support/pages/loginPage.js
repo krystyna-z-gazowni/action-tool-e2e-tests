@@ -32,7 +32,7 @@ const getChangeUsernameButton = () => {
 };
 
 const getCheckBox = () => {
-  return cy.get('[data-testid="CheckBoxOutlineBlankIcon"]').siblings('input');
+  return cy.get('input[type="checkbox"]');
 };
 
 const getPatentLink = () => {

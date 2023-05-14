@@ -112,4 +112,27 @@ describe('Login Page', () => {
       .getUsername()
       .should('have.value', Cypress.env().testData.changedUsername);
   });
+  it('Should persist username when Remember me checkbox checked.', function () {
+    //Enter username and check Remember me checkbox
+    loginPage.getUsername().type(Cypress.env().testData.username);
+    loginPage.getCheckBox().check().should('be.checked');
+    //Check that FOCAL_AT_USERNAME is set to entered username
+    cy.getCookie('FOCAL_AT_USERNAME').should(
+      'have.property',
+      'value',
+      Cypress.env().testData.username
+    );
+    //Reload page and check that entered username persists
+    cy.reload();
+    loginPage
+      .getUsername()
+      .should('have.value', Cypress.env().testData.username);
+    //Uncheck Remember me checkbox
+    loginPage.getCheckBox().click().should('not.be.checked');
+    //Check that FOCAL_AT_USERNAME is empty
+    cy.getCookie('FOCAL_AT_USERNAME').should('have.property', 'value', '');
+    //Reload page and check that Username input field is empty
+    cy.reload();
+    loginPage.getUsername().should('be.empty');
+  });
 });
