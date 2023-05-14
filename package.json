@@ -1,0 +1,16 @@
+{
+  "name": "action-tool-e2e-tests",
+  "version": "1.0.0",
+  "description": "Cypress repository containing e2e tests for Action Tool",
+  "main": "index.js",
+  "author": "Krystyna KH",
+  "license": "MIT",
+  "scripts": {
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run",
+    "test:e2e:chrome": "cypress run --browser chrome"
+  },
+  "devDependencies": {
+    "cypress": "^12.12.0"
+  }
+}
